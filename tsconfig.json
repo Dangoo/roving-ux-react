@@ -7,7 +7,6 @@
     "module": "ESNext",                             /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
     "declaration": true,                            /* Generates corresponding '.d.ts' file. */
     "sourceMap": true,                              /* Generates corresponding '.map' file. */
-
     "outDir": "./dist",                             /* Redirect output structure to the directory. */
 
     /* Strict Type-Checking Options */
@@ -16,6 +15,7 @@
     /* Module Resolution Options */
     "moduleResolution": "node",                     /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     "esModuleInterop": true,                        /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "types": ["node", "jest"],
 
     /* Advanced Options */
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
