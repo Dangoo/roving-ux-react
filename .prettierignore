@@ -1,0 +1,11 @@
+# See https://prettier.io/docs/en/ignore.html for more about ignoring files.
+
+dist/
+
+# dependencies
+node_modules/
+package-lock.json
+
+# System Files
+.DS_Store
+Thumbs.db
