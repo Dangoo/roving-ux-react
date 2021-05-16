@@ -1,10 +1,12 @@
-# Roving UX
+# Roving UX React
 
 <div>
   <img src="https://img.shields.io/npm/dt/roving-ux-react.svg" alt="Total Downloads">
   <img src="https://img.shields.io/npm/v/roving-ux-react.svg" alt="Latest Release">
   <img src="https://img.shields.io/npm/l/roving-ux-react.svg" alt="License">
 </div>
+
+<br />
 
 > Turns tedious tab UX into a controlled and stateful experience
 
