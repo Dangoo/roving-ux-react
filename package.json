@@ -12,6 +12,7 @@
     "build:esm": "tsc --project tsconfig.esm.json",
     "build:cjs": "tsc --project tsconfig.cjs.json",
     "build": "npm run build:cjs && npm run build:esm",
+    "lint": "prettier --check .",
     "prettify": "prettier --write .",
     "test": "jest"
   },
