@@ -72,10 +72,12 @@ export function useRovingIndex(): RovingIndexReturn {
     (e: React.KeyboardEvent) => {
       switch (e.key) {
         case 'ArrowRight':
+        case 'ArrowDown':
           e.preventDefault()
           focusNextItem()
           break
         case 'ArrowLeft':
+        case 'ArrowUp':
           e.preventDefault()
           focusPrevItem()
           break

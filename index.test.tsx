@@ -52,7 +52,7 @@ describe(useRovingIndex.name, () => {
     expect(getByText('1')).toHaveFocus()
   })
 
-  it('should set the activeIndex correct when using arrow keys', () => {
+  it('should set the activeIndex correct when using horizontal arrow keys', () => {
     const Component = () => {
       const { getTargetProps, roverProps } = useRovingIndex()
 
@@ -85,6 +85,42 @@ describe(useRovingIndex.name, () => {
     expect(getByText('3')).toHaveFocus()
 
     userEvent.type(rover, '{arrowLeft}')
+    expect(getByText('2')).toHaveFocus()
+  })
+
+  it('should set the activeIndex correct when using vertical arrow keys', () => {
+    const Component = () => {
+      const { getTargetProps, roverProps } = useRovingIndex()
+
+      return (
+        <ul {...roverProps}>
+          <li {...getTargetProps(0)}>1</li>
+          <li {...getTargetProps(1)}>2</li>
+          <li {...getTargetProps(2)}>3</li>
+        </ul>
+      )
+    }
+
+    const { getByText, getByRole } = render(<Component />)
+    const rover = getByRole('list')
+
+    expect(document.body).toHaveFocus()
+    userEvent.tab()
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowUp}')
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowDown}')
+    expect(getByText('2')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowDown}')
+    expect(getByText('3')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowDown}')
+    expect(getByText('3')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowUp}')
     expect(getByText('2')).toHaveFocus()
   })
 
