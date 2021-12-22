@@ -70,13 +70,16 @@ export function useRovingIndex(): RovingIndexReturn {
   // watch for arrow keys
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      const isRtl =
+        getComputedStyle(e.currentTarget as HTMLElement).direction === 'rtl'
+
       switch (e.key) {
-        case 'ArrowRight':
+        case isRtl ? 'ArrowLeft' : 'ArrowRight':
         case 'ArrowDown':
           e.preventDefault()
           focusNextItem()
           break
-        case 'ArrowLeft':
+        case isRtl ? 'ArrowRight' : 'ArrowLeft':
         case 'ArrowUp':
           e.preventDefault()
           focusPrevItem()

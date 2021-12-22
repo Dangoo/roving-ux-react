@@ -21,4 +21,9 @@ module.exports = {
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
+
+  // Test environment options that will be passed to the `testEnvironment`
+  testEnvironmentOptions: {
+    pretendToBeVisual: true,
+  },
 }

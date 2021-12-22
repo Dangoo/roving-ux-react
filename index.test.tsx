@@ -45,8 +45,7 @@ describe(useRovingIndex.name, () => {
         </ul>
       )
     }
-    const { getByText, getByRole } = render(<Component />)
-    const rover = getByRole('list')
+    const { getByText } = render(<Component />)
     expect(document.body).toHaveFocus()
     userEvent.tab()
     expect(getByText('1')).toHaveFocus()
@@ -65,7 +64,7 @@ describe(useRovingIndex.name, () => {
       )
     }
 
-    const { getByText, getByRole } = render(<Component />)
+    const { getByRole, getByText } = render(<Component />)
     const rover = getByRole('list')
 
     expect(document.body).toHaveFocus()
@@ -85,6 +84,49 @@ describe(useRovingIndex.name, () => {
     expect(getByText('3')).toHaveFocus()
 
     userEvent.type(rover, '{arrowLeft}')
+    expect(getByText('2')).toHaveFocus()
+  })
+
+  it('should set the activeIndex correct when using horizontal arrow keys (RTL)', () => {
+    const Component = () => {
+      const { getTargetProps, roverProps } = useRovingIndex()
+
+      return (
+        // Applying `direction: rtl` to emulate cascading `dir="rtl"` which
+        // JSDOM does not support
+        <ul {...roverProps} style={{ direction: 'rtl' }}>
+          <li {...getTargetProps(0)}>1</li>
+          <li {...getTargetProps(1)}>2</li>
+          <li {...getTargetProps(2)}>3</li>
+        </ul>
+      )
+    }
+
+    const { getByRole, getByText } = render(<Component />, {
+      wrapper: ({ children }) => <div dir="rtl">{children}</div>,
+    })
+
+    expect(getComputedStyle(getByRole('list')).direction).toBe('rtl')
+    const rover = getByRole('list')
+
+    // Remember all directions are inverted to reflect RTL behavior
+    expect(document.body).toHaveFocus()
+    userEvent.tab()
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowRight}')
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowLeft}')
+    expect(getByText('2')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowLeft}')
+    expect(getByText('3')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowLeft}')
+    expect(getByText('3')).toHaveFocus()
+
+    userEvent.type(rover, '{arrowRight}')
     expect(getByText('2')).toHaveFocus()
   })
 
