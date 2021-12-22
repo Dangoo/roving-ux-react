@@ -48,7 +48,7 @@
     "babel-jest": "^27.0.6",
     "caniuse-lite": "^1.0.30001292",
     "jest": "^27.0.6",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "standard-version": "^9.3.1",
