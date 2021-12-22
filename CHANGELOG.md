@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/dangoo/roving-ux-react/compare/v1.1.0...v1.2.0) (2021-12-22)
+
+
+### Features
+
+* add rtl support for arrow keys ([#149](https://github.com/dangoo/roving-ux-react/issues/149)) ([34279f1](https://github.com/dangoo/roving-ux-react/commit/34279f120d03846631ee88d0c242a166549bc2cf))
+
 ## [1.1.0](https://github.com/dangoo/roving-ux-react/compare/v1.0.1...v1.1.0) (2021-07-17)
 
 ### Features
