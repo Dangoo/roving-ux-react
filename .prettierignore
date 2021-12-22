@@ -9,3 +9,6 @@ package-lock.json
 # System Files
 .DS_Store
 Thumbs.db
+
+# Auto generated Files
+CHANGELOG.md
