@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/dangoo/roving-ux-react/compare/v1.2.0...v1.2.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* diverged focus state of activeIndex after click/tap ([#183](https://github.com/dangoo/roving-ux-react/issues/183)) ([48c6067](https://github.com/dangoo/roving-ux-react/commit/48c6067fb9ffe73b788d2ceabc0352fd8d19c94f))
+
 ## [1.2.0](https://github.com/dangoo/roving-ux-react/compare/v1.1.0...v1.2.0) (2021-12-22)
 
 
