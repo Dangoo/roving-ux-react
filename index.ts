@@ -76,26 +76,29 @@ export function useRovingIndex(): RovingIndexReturn {
     }
   }, [activeIndex])
 
-  // children get focus
-  const onFocus = useCallback((e: React.FocusEvent) => {
-    // catch unlikely case where container received focus
-    if (e.target === e.currentTarget) {
-      return
-    }
+  // when container or children get focus
+  const onFocus = useCallback(
+    (e: React.FocusEvent) => {
+      // container received focus
+      if (e.target === e.currentTarget) {
+        targets.current[activeIndex]?.focus()
+      }
 
-    const targetIndex = targets.current.indexOf(
-      e.nativeEvent.target as HTMLElement
-    )
+      const targetIndex = targets.current.indexOf(
+        e.nativeEvent.target as HTMLElement
+      )
 
-    // one of the targets received focus
-    if (targetIndex >= 0) {
-      // update `activeIndex`
-      dispatch({
-        type: 'set',
-        value: targetIndex,
-      })
-    }
-  }, [])
+      // one of the targets received focus
+      if (targetIndex >= 0) {
+        // update `activeIndex`
+        dispatch({
+          type: 'set',
+          value: targetIndex,
+        })
+      }
+    },
+    [activeIndex]
+  )
 
   // watch for arrow keys
   const onKeyDown = useCallback(

@@ -52,6 +52,34 @@ describe(useRovingIndex.name, () => {
     expect(getByText('1')).toHaveFocus()
   })
 
+  it('should set the activeIndex correct when focusing the container', () => {
+    const Component = () => {
+      const { getTargetProps, roverProps } = useRovingIndex()
+
+      return (
+        <ul {...roverProps}>
+          <li {...getTargetProps(0)}>1</li>
+          <li {...getTargetProps(1)}>2</li>
+          <li {...getTargetProps(2)}>3</li>
+        </ul>
+      )
+    }
+
+    const { getByText, getByRole } = render(<Component />)
+    const container = getByRole('list')
+
+    expect(document.body).toHaveFocus()
+    userEvent.tab()
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.keyboard('{arrowRight}')
+    expect(getByText('2')).toHaveFocus()
+
+    userEvent.tab({ shift: true })
+    userEvent.click(container)
+    expect(getByText('2')).toHaveFocus()
+  })
+
   it('should set the activeIndex correct when using horizontal arrow keys', () => {
     const Component = () => {
       const { getTargetProps, roverProps } = useRovingIndex()
