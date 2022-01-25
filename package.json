@@ -1,6 +1,6 @@
 {
   "name": "roving-ux-react",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Stateful roving index for react web ui",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
