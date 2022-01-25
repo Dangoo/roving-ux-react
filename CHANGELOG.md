@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/dangoo/roving-ux-react/compare/v1.2.1...v1.2.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* prevent focusing container by click ([b2f7e6e](https://github.com/dangoo/roving-ux-react/commit/b2f7e6e1c712e9ffe34567b671df127b5c91513c))
+
 ### [1.2.1](https://github.com/dangoo/roving-ux-react/compare/v1.2.0...v1.2.1) (2022-01-25)
 
 
