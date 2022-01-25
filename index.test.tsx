@@ -198,4 +198,35 @@ describe(useRovingIndex.name, () => {
     userEvent.tab({ shift: true })
     expect(getByText('2')).toHaveFocus()
   })
+
+  it('should update activeIndex when clicking/tapping element', () => {
+    const Component = () => {
+      const { getTargetProps, roverProps } = useRovingIndex()
+
+      return (
+        <>
+          <ul {...roverProps}>
+            <li {...getTargetProps(0)}>1</li>
+            <li {...getTargetProps(1)}>2</li>
+            <li {...getTargetProps(2)}>3</li>
+          </ul>
+        </>
+      )
+    }
+
+    const { getByText, getByRole } = render(<Component />)
+    const rover = getByRole('list')
+    const clickTarget = getByText('2')
+
+    expect(document.body).toHaveFocus()
+    userEvent.tab()
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.click(clickTarget)
+    expect(clickTarget).toHaveFocus()
+
+    userEvent.tab({ shift: true })
+    userEvent.tab()
+    expect(clickTarget).toHaveFocus()
+  })
 })
