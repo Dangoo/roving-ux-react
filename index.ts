@@ -116,7 +116,7 @@ export function useRovingIndex(): RovingIndexReturn {
           break
       }
     },
-    [focusPrevItem, focusNextItem]
+    [focusNextItem, focusPrevItem]
   )
 
   // watch for new active item and focus it

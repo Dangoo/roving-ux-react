@@ -4,6 +4,7 @@ import { renderHook } from '@testing-library/react-hooks'
 import userEvent from '@testing-library/user-event'
 import { useRovingIndex } from './index'
 
+// eslint-disable-next-line jest/valid-title
 describe(useRovingIndex.name, () => {
   it('should return defined keys', () => {
     const { result } = renderHook(() => useRovingIndex())
@@ -64,8 +65,7 @@ describe(useRovingIndex.name, () => {
       )
     }
 
-    const { getByRole, getByText } = render(<Component />)
-    const rover = getByRole('list')
+    const { getByText } = render(<Component />)
 
     expect(document.body).toHaveFocus()
     userEvent.tab()
@@ -107,7 +107,6 @@ describe(useRovingIndex.name, () => {
     })
 
     expect(getComputedStyle(getByRole('list')).direction).toBe('rtl')
-    const rover = getByRole('list')
 
     // Remember all directions are inverted to reflect RTL behavior
     expect(document.body).toHaveFocus()
@@ -143,8 +142,7 @@ describe(useRovingIndex.name, () => {
       )
     }
 
-    const { getByText, getByRole } = render(<Component />)
-    const rover = getByRole('list')
+    const { getByText } = render(<Component />)
 
     expect(document.body).toHaveFocus()
     userEvent.tab()
@@ -183,7 +181,6 @@ describe(useRovingIndex.name, () => {
     }
 
     const { getByText, getByRole } = render(<Component />)
-    const rover = getByRole('list')
 
     expect(document.body).toHaveFocus()
     userEvent.tab()
@@ -214,8 +211,8 @@ describe(useRovingIndex.name, () => {
       )
     }
 
-    const { getByText, getByRole } = render(<Component />)
-    const rover = getByRole('list')
+    const { getByText } = render(<Component />)
+
     const clickTarget = getByText('2')
 
     expect(document.body).toHaveFocus()
