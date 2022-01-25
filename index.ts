@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
 export interface RoverProps {
   tabIndex: number
-  onFocus(): void
+  onFocus(e: React.FocusEvent): void
   onKeyDown(e: React.KeyboardEvent): void
 }
 
@@ -17,8 +17,22 @@ export interface RovingIndexReturn {
   getTargetProps(index: number): TargetProps
 }
 
-function reducer(state: number, action: { type: 'prev' | 'next' }) {
+interface ReducerAction {
+  type: 'prev' | 'next'
+}
+
+interface ReducerActionWithValue {
+  type: 'set'
+  value: number
+}
+
+function reducer(
+  state: number,
+  action: ReducerAction | ReducerActionWithValue
+): number {
   switch (action.type) {
+    case 'set':
+      return action.value
     case 'prev':
       return state - 1
     case 'next':
@@ -62,10 +76,26 @@ export function useRovingIndex(): RovingIndexReturn {
     }
   }, [activeIndex])
 
-  // when container or children get focus
-  const onFocus = useCallback(() => {
-    targets.current[activeIndex]?.focus()
-  }, [activeIndex])
+  // children get focus
+  const onFocus = useCallback((e: React.FocusEvent) => {
+    // catch unlikely case where container received focus
+    if (e.target === e.currentTarget) {
+      return
+    }
+
+    const targetIndex = targets.current.indexOf(
+      e.nativeEvent.target as HTMLElement
+    )
+
+    // one of the targets received focus
+    if (targetIndex >= 0) {
+      // update `activeIndex`
+      dispatch({
+        type: 'set',
+        value: targetIndex,
+      })
+    }
+  }, [])
 
   // watch for arrow keys
   const onKeyDown = useCallback(

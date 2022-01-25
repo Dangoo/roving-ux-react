@@ -71,19 +71,19 @@ describe(useRovingIndex.name, () => {
     userEvent.tab()
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowLeft}')
+    userEvent.keyboard('{arrowLeft}')
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('2')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowLeft}')
+    userEvent.keyboard('{arrowLeft}')
     expect(getByText('2')).toHaveFocus()
   })
 
@@ -114,19 +114,19 @@ describe(useRovingIndex.name, () => {
     userEvent.tab()
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowLeft}')
+    userEvent.keyboard('{arrowLeft}')
     expect(getByText('2')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowLeft}')
+    userEvent.keyboard('{arrowLeft}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowLeft}')
+    userEvent.keyboard('{arrowLeft}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('2')).toHaveFocus()
   })
 
@@ -150,19 +150,19 @@ describe(useRovingIndex.name, () => {
     userEvent.tab()
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowUp}')
+    userEvent.keyboard('{arrowUp}')
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowDown}')
+    userEvent.keyboard('{arrowDown}')
     expect(getByText('2')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowDown}')
+    userEvent.keyboard('{arrowDown}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowDown}')
+    userEvent.keyboard('{arrowDown}')
     expect(getByText('3')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowUp}')
+    userEvent.keyboard('{arrowUp}')
     expect(getByText('2')).toHaveFocus()
   })
 
@@ -189,7 +189,7 @@ describe(useRovingIndex.name, () => {
     userEvent.tab()
     expect(getByText('1')).toHaveFocus()
 
-    userEvent.type(rover, '{arrowRight}')
+    userEvent.keyboard('{arrowRight}')
     expect(getByText('2')).toHaveFocus()
 
     userEvent.tab()
@@ -197,5 +197,36 @@ describe(useRovingIndex.name, () => {
 
     userEvent.tab({ shift: true })
     expect(getByText('2')).toHaveFocus()
+  })
+
+  it('should update activeIndex when clicking/tapping element', () => {
+    const Component = () => {
+      const { getTargetProps, roverProps } = useRovingIndex()
+
+      return (
+        <>
+          <ul {...roverProps}>
+            <li {...getTargetProps(0)}>1</li>
+            <li {...getTargetProps(1)}>2</li>
+            <li {...getTargetProps(2)}>3</li>
+          </ul>
+        </>
+      )
+    }
+
+    const { getByText, getByRole } = render(<Component />)
+    const rover = getByRole('list')
+    const clickTarget = getByText('2')
+
+    expect(document.body).toHaveFocus()
+    userEvent.tab()
+    expect(getByText('1')).toHaveFocus()
+
+    userEvent.click(clickTarget)
+    expect(clickTarget).toHaveFocus()
+
+    userEvent.tab({ shift: true })
+    userEvent.tab()
+    expect(clickTarget).toHaveFocus()
   })
 })
